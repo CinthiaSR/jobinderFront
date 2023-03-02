@@ -1,6 +1,6 @@
 import { card, contenido } from './card.js'
 
-const urlFirebase = 'https://segundaoportunidad-eab4a-default-rtdb.firebaseio.com'
+const urlFirebase = 'https://jobinderapi-production.up.railway.app/api/v1'
 //const urlFirebase = 'https://<dominio>/api/v1' //
 
 
@@ -33,12 +33,12 @@ const tiempoTranscurrido = (createdAt) =>{
 }
 
 const filtrado = (arreglo, palabraClave) => {
-    return arreglo.filter( objeto => objeto.floatingTextarea.includes(palabraClave))
+    return arreglo.filter( objeto => objeto.title.includes(palabraClave))
 }
 
 const get = async (contenedor,id) => {
     try {
-        let response = await fetch(`${urlFirebase}/${id}.json`) //
+        let response = await fetch(`${urlFirebase}/posts/:${id}`) //
         const result = await response.json();
         const difTiempo = tiempoTranscurrido(result.createdAt)
         contenedor.appendChild(card(result, difTiempo,contenido(result)))
@@ -49,9 +49,10 @@ const get = async (contenedor,id) => {
 
 const getEdit = async (form,id) => {
     try {
-        let response = await fetch(`${urlFirebase}/${id}.json`)
+        let response = await fetch(`${urlFirebase}/posts/${id}`)
         const result = await response.json();
         Object.entries(result)
+        console.log(Object.entries(result))
         Array.from(form).forEach((elemento) =>{
             Object.entries(result).forEach((ele) =>{
             if(elemento.name === ele[0]){
@@ -68,9 +69,10 @@ const getEdit = async (form,id) => {
 const getAll = async (contenedor, boolean, palabraClave) => {
     try {
 
-        let response = await fetch(`${urlFirebase}/.json`)// ('urlFirebase/posts')
+        let response = await fetch(`${urlFirebase}/posts/`)// ('urlFirebase/posts')
         const result = await response.json();
         const data = parseInfo(result);
+        console.log(data)
         if(boolean){
             data.forEach((personaje) => {
                 const difTiempo = tiempoTranscurrido(personaje.createdAt)
@@ -93,7 +95,7 @@ const getAll = async (contenedor, boolean, palabraClave) => {
 const post = async (formulario) => {
     try {
         // const response = await fetch(`${urlFirebase}/.json`,{
-        const response = await fetch(`https://jobinderapi-production.up.railway.app/api/v1/posts/`,{
+        const response = await fetch(`${urlFirebase}/posts/`,{
         method: 'POST',
         headers : { 'Content-Type': 'application/json;charset=UTF-8'},
         body: JSON.stringify(formulario),
@@ -106,15 +108,17 @@ const post = async (formulario) => {
 
 const patch = async (persona,id) => {
     try {
-        const response = await fetch(`${urlFirebase}/${id}.json`,{
+        const response = await fetch(`${urlFirebase}/posts/${id}`,{
         method: 'PATCH',
         headers : { 'Content-Type': 'application/json;charset=UTF-8'},
         body: JSON.stringify({
-            floatingTextarea: persona.floatingTextarea,
-            floatingTextarea2: persona.floatingTextarea2,
-            urlImagenPrincipal: persona.urlImagenPrincipal
+            title: persona.title,
+            content: persona.content,
+            imageURL: persona.imageURL,
+            author:"63ffa9357217497eb9b64bd4"
         })
-        })
+    })
+    console.log(body)
 
     } catch (error) {
         console.log('patch:', error)
@@ -123,7 +127,7 @@ const patch = async (persona,id) => {
 
 const del = async (id) => {
     try {
-        const response = await fetch(`${urlFirebase}/${id}.json`,{
+        const response = await fetch(`${urlFirebase}/posts/${id}`,{
         method: 'DELETE',
         headers : { 'Content-Type': 'application/json;charset=UTF-8'},
         });

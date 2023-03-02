@@ -4,15 +4,18 @@ const columnaCentral = document.querySelector('#columnaCentral');
 const editarPost = document.querySelector('#editarPost')
 const eliminarPost = document.querySelector('#eliminarPost')
 const url = new URLSearchParams(window.location.search);
+console.log(url)
 const id = url.get('persona')
 
 get(columnaCentral, id)
 
 editarPost.addEventListener('click', (event) => {
+
     event.preventDefault();
-    if(id.includes('-N')){
-        window.location.href = `/src/editarPost.html?persona=${id}`
-    }
+    // if(id.includes('-N')){
+        window.location.href=`/src/editarPost.html?persona=${id}`
+        // window.location.href = `/src/editarPost.html?persona=${id}`
+    // }
 })
 
 eliminarPost.addEventListener('click', (event) => {

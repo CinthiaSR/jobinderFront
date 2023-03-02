@@ -6,7 +6,7 @@ const card = (post, difTiempo, contenido) => {
           articleCard.classList.add('card', 'm-3');
     const imgCardPrincipal = document.createElement('img');//1-1
           imgCardPrincipal.classList.add('card-img-top');
-          imgCardPrincipal.src = post.urlImagenPrincipal;//aquiiiiiiiiiii
+          imgCardPrincipal.src = post.imageURL;//aquiiiiiiiiiii
     const divCardBody = document.createElement('div');//1-2
           divCardBody.classList.add('card-body');
     articleCard.appendChild(imgCardPrincipal);
@@ -43,8 +43,15 @@ const card = (post, difTiempo, contenido) => {
     //todo lo de abajo va dentro de aArticleHtml
     const h3CardTtitle = document.createElement('h3');
           h3CardTtitle.classList.add('card-title', 'ms-4');
-          h3CardTtitle.id =post.id
-          h3CardTtitle.textContent = post.floatingTextarea;//aquiiiiiiii
+          h3CardTtitle.id = post._id  // ID DE LA CARD
+          h3CardTtitle.addEventListener('click', (event) => {
+            event.preventDefault();
+            
+            //     window.location.href='./src/article.html'
+                window.location.href = `./src/article.html?persona=${post._id}`
+            
+        })
+          h3CardTtitle.textContent = post.content;//aquiiiiiiii
     aArticleHtml.appendChild(h3CardTtitle);
     //todo lo de abajo va dentro de ulFlexWrap
     const liWeekly = document.createElement('li');
@@ -110,7 +117,7 @@ const contenido = (post) =>{
       divCardContenido.classList.add('card-body');
       const creandoP = document.createElement('p')
       creandoP.classList.add('card-text')
-      creandoP.textContent = post.floatingTextarea2;
+      creandoP.textContent = post.content;
       divCar.appendChild(divCardContenido)
       divCardContenido.appendChild(creandoP)
       return divCar

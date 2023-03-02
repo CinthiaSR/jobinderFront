@@ -21,15 +21,9 @@ publish.addEventListener('click', (event) => {
     form.forEach((elemento) =>{
         objetoPost[elemento.name] = elemento.value;
     });
-    const newObject={
-        title:"lo que tu quieras",
-        content:"hola",
-        imageURL:"IMAGN",
-        comments:[],
-        author:"63ffa5a9d152c2aebd289fe9"
-    }
-    if(true){
-        post(newObject);
+    console.log(objetoPost)
+    if(validacion(objetoPost)){
+        post(objetoPost);
         alert('se creó correctamente')
     }else{
         alert(`Oye te falta completar el formulario e.e`)

@@ -18,13 +18,14 @@ publish.addEventListener('click', (event) => {
     event.preventDefault();
     let objetoPost = {};
     form.forEach((elemento) =>{
+        console.log(elemento.name)
         objetoPost[elemento.name] = elemento.value;
     });
     console.log(objetoPost, id)
     if(validacion(objetoPost)){
-        patch(objetoPost, id);
+        patch(objetoPost,id);
         console.log('ok')
-        alert('se actualizó correctamente',window.location.href = `../index.html`)
+        // alert('se actualizó correctamente',window.location.href = `../index.html`)
     }else{
         return alert(`Oye te falta completar el formulario e.e`)
     }

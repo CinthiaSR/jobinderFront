@@ -7,8 +7,10 @@ getAll(articles,true,'')
 
 articles.addEventListener('click', (event) => {
     event.preventDefault();
-    if(event.target.id.includes('-N')){
-        window.location.href = `./src/article.html?persona=${event.target.id}`
+    // console.log(event.target)
+    if(event.target._id.includes('-N')){
+        window.location.href='./src/article.html'
+        // window.location.href = `./src/article.html?persona=${event.target._id}`
     }
 })
 
