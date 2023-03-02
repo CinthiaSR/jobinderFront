@@ -38,7 +38,7 @@ const filtrado = (arreglo, palabraClave) => {
 
 const get = async (contenedor,id) => {
     try {
-        let response = await fetch(`${urlFirebase}/posts/${id}`) //
+        let response = await fetch(`${urlFirebase}/comments/${id}`) //
         const result = await response.json();
         const difTiempo = tiempoTranscurrido(result.createdAt)
         contenedor.appendChild(card(result, difTiempo,contenido(result)))
@@ -49,7 +49,7 @@ const get = async (contenedor,id) => {
 
 const getEdit = async (form,id) => {
     try {
-        let response = await fetch(`${urlFirebase}/posts/${id}`)
+        let response = await fetch(`${urlFirebase}/comments/${id}`)
         const result = await response.json();
         Object.entries(result)
         console.log(Object.entries(result))
@@ -69,7 +69,7 @@ const getEdit = async (form,id) => {
 const getAll = async (contenedor, boolean, palabraClave) => {
     try {
 
-        let response = await fetch(`${urlFirebase}/posts/`)// ('urlFirebase/posts')
+        let response = await fetch(`${urlFirebase}/comments/`)// ('urlFirebase/posts')
         const result = await response.json();
         const data = parseInfo(result);
         console.log(data)
@@ -92,7 +92,7 @@ const getAll = async (contenedor, boolean, palabraClave) => {
     }
 }
 
-const post = async (formulario) => {
+const postComment = async (formulario) => {
     try {
         // const response = await fetch(`${urlFirebase}/.json`,{
         const response = await fetch(`${urlFirebase}/posts/`,{
@@ -108,7 +108,7 @@ const post = async (formulario) => {
 
 const patch = async (persona,id) => {
     try {
-        const response = await fetch(`${urlFirebase}/posts/${id}`,{
+        const response = await fetch(`${urlFirebase}/comments/${id}`,{
         method: 'PATCH',
         headers : { 'Content-Type': 'application/json;charset=UTF-8'},
         body: JSON.stringify({
@@ -127,7 +127,7 @@ const patch = async (persona,id) => {
 
 const del = async (id) => {
     try {
-        const response = await fetch(`${urlFirebase}/posts/${id}`,{
+        const response = await fetch(`${urlFirebase}/comments/${id}`,{
         method: 'DELETE',
         headers : { 'Content-Type': 'application/json;charset=UTF-8'},
         });
@@ -135,18 +135,4 @@ const del = async (id) => {
         console.log('delete:', error)
     }
 }
-// ----------------------------------comments
-const postComment = async (formulario) => {
-    try {
-        // const response = await fetch(`${urlFirebase}/.json`,{
-        const response = await fetch(`${urlFirebase}/comments/`,{
-        method: 'POST',
-        headers : { 'Content-Type': 'application/json;charset=UTF-8'},
-        body: JSON.stringify(formulario),
-        });
-        console.log(formulario)
-    } catch (error) {
-        console.log('post:', error)
-    }
-}
-export { get, getEdit ,getAll, post, patch, del, postComment }
+export { get, getEdit ,getAll, postComment, patch, del }

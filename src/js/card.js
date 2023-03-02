@@ -34,7 +34,7 @@ const card = (post, difTiempo, contenido) => {
     //todo lo de abajo va dentro de divUserdetails
     const pNameUser = document.createElement('p');
           pNameUser.classList.add('fw-bold');
-          pNameUser.textContent = 'Zoy'//post.name;//aquiiiiiiiiii
+          pNameUser.textContent = 'Alfred'//post.name;//aquiiiiiiiiii
     const pTime = document.createElement('p');
           pTime.classList.add('time');
           pTime.textContent = '27 feb  2023'//post.dateCreated;//aquiiiiiiiiii
