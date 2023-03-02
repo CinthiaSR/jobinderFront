@@ -22,9 +22,9 @@ publish.addEventListener('click', (event) => {
         objetoPost[elemento.name] = elemento.value;
     });
     console.log(objetoPost, id)
-    if(validacion(objetoPost)){
+    if(true){
         patch(objetoPost,id);
-        console.log('ok')
+        alert(objetoPost)
         // alert('se actualizó correctamente',window.location.href = `../index.html`)
     }else{
         return alert(`Oye te falta completar el formulario e.e`)
