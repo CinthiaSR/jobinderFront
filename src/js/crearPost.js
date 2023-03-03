@@ -25,6 +25,7 @@ publish.addEventListener('click', (event) => {
     if(validacion(objetoPost)){
         post(objetoPost);
         alert('se creó correctamente')
+        // alert('Post creado',window.location.href = `../index.html`)
     }else{
         alert(`Oye te falta completar el formulario e.e`)
     }

@@ -135,7 +135,7 @@ const del = async (id) => {
         console.log('delete:', error)
     }
 }
-// ----------------------------------comments
+// -------------------------------------------------------------------------------------comments
 const postComment = async (formulario) => {
     try {
         // const response = await fetch(`${urlFirebase}/.json`,{
@@ -149,4 +149,40 @@ const postComment = async (formulario) => {
         console.log('post:', error)
     }
 }
-export { get, getEdit ,getAll, post, patch, del, postComment }
+const getEditComments = async (form,id) => {
+    try {
+        let response = await fetch(`${urlFirebase}/comments/${id}`)
+        const result = await response.json();
+        Object.entries(result)
+        console.log(Object.entries(result))
+        Array.from(form).forEach((elemento) =>{
+            Object.entries(result).forEach((ele) =>{
+            if(elemento.name === ele[0]){
+              elemento.value = ele[1];
+                }
+            })
+           })
+           
+    } catch (error) {
+        console.log('get', error);
+    }
+}
+
+
+const patchComments = async (comments,id) => {
+    try {
+        const response = await fetch(`${urlFirebase}/comments/${id}`,{
+        method: 'PATCH',
+        headers : { 'Content-Type': 'application/json;charset=UTF-8'},
+        body: JSON.stringify({
+            content: comments.content,
+            author:"63ffa9357217497eb9b64bd4"
+        })
+    })
+    console.log(body)
+
+    } catch (error) {
+        console.log('patch:', error)
+    }
+}
+export { get, getEdit ,getAll, post, patch, del, postComment, getEditComments, patchComments }

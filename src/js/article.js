@@ -21,10 +21,10 @@ editarPost.addEventListener('click', (event) => {
 
 eliminarPost.addEventListener('click', (event) => {
     event.preventDefault();
-    if(id.includes('-N')){
+    // if(id.includes('-N')){
         del(id)
         alert('Se ha borrado correctamente',window.location.href = `/index.html`);
-    }
+    // }
 })
 
 

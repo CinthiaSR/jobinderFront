@@ -25,7 +25,7 @@ publish.addEventListener('click', (event) => {
     if(true){
         patch(objetoPost,id);
         alert(objetoPost)
-        // alert('se actualizó correctamente',window.location.href = `../index.html`)
+        alert('se actualizó correctamente',window.location.href = `../index.html`)
     }else{
         return alert(`Oye te falta completar el formulario e.e`)
     }
